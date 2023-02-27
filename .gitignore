@@ -125,3 +125,5 @@ tools/qa-downloads/
 tools/survey-downloads/
 
 version.txt
+
+.db_data
