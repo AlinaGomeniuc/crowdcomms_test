@@ -22,7 +22,7 @@ class BunnySerializer(serializers.ModelSerializer):
     family_members = serializers.SerializerMethodField()
 
     def get_family_members(self, obj):
-        return []
+        return obj.home.bunnies.exclude(name=obj.name).values_list('name', flat=True)
 
     def validate(self, attrs):
         if attrs['home'].bunnies_limit == attrs['home'].bunnies.count():
