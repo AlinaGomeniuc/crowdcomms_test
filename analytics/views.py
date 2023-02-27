@@ -15,7 +15,7 @@ class HelloWorld(APIView):
     in the last 1 hour, and the total number of visitors and page visits
     """
 
-    def get(self, request, format=None):
+    def get(self, request):
         now = datetime(2020, 6, 6, 9, tzinfo=pytz.UTC)
         data = {
             'version': 1.0,
