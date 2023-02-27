@@ -4,7 +4,8 @@ WORKDIR /opt/app
 
 RUN apt-get -y update && apt-get -y upgrade
 
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml poetry.lock entrypoint.sh ./
+
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
     cd /usr/local/bin && \
     ln -s /opt/poetry/bin/poetry && \
@@ -13,3 +14,5 @@ RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python
 RUN poetry install --no-root
 
 COPY . /opt/app/
+
+ENTRYPOINT ["./entrypoint.sh"]
