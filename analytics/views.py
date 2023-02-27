@@ -1,6 +1,8 @@
-from datetime import datetime
-
+import pytz
 from django.utils import timezone
+from .models import UserVisit
+from datetime import datetime, timedelta
+from django.db.models import Sum
 
 # Create your views here.
 from rest_framework.response import Response
@@ -14,12 +16,13 @@ class HelloWorld(APIView):
     """
 
     def get(self, request, format=None):
+        now = datetime(2020, 6, 6, 9, tzinfo=pytz.UTC)
         data = {
             'version': 1.0,
-            'time': timezone.now(),
-            'recent_visitors': 0,
-            'all_visitors': 0,
-            'all_visits': 0,
+            'time': now,
+            'recent_visitors': UserVisit.objects.filter(last_seen__gte=now-timedelta(hours=1)).count(),
+            'all_visitors': UserVisit.objects.count(),
+            'all_visits': UserVisit.objects.aggregate(total_visits=Sum('visits'))['total_visits']
         }
         return Response(data)
 
