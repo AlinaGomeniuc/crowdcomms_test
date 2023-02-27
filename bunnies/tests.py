@@ -111,7 +111,7 @@ class RabbitHolesTests(APITestCase):
         rabbit_hole = RabbitHole.objects.create(owner=user, location='location', bunnies_limit=3)
         for name in ['Flopsy', 'Mopsy', 'CottonTail']:
             Bunny.objects.create(name=name, home=rabbit_hole)
-        url = reverse(
+        reverse(
             'bunny-list'
         )
         self.client.login(username='user', password='rabbits')
