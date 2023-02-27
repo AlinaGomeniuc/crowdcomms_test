@@ -95,7 +95,7 @@ class RabbitHolesTests(APITestCase):
         A superuser can delete any of the rabbitholes
         '''
         user = User.objects.create_user(username='user', email='user@test.com', password='rabbits')
-        superuser = User.objects.create_user(username='superuser', email='superuser@test.com', password='rabbits',
+        User.objects.create_user(username='superuser', email='superuser@test.com', password='rabbits',
                                              is_superuser=True)
 
         rabbit_hole = RabbitHole.objects.create(owner=user, location='location')
