@@ -9,7 +9,7 @@ class RabbitHoleSerializer(serializers.ModelSerializer):
     bunny_count = serializers.SerializerMethodField()
 
     def get_bunny_count(self, obj):
-        return Bunny.objects.count()
+        return Bunny.objects.filter(home=obj).count()
 
     class Meta:
         model = RabbitHole
