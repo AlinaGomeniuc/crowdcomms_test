@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Ben Harling <bharling@crowdcomms.co.uk>"]
 readme = "README.md"
-packages = [{include = "crowdcomms_django_test"}]
+#packages = [{include = "crowdcomms_django_test"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
