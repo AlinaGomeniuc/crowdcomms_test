@@ -1,9 +1,12 @@
 version: '2'
 
-services: 
+services:
   project:
     image: crowdcomms/django-test:latest
     build: .
-    volumes: 
-      - .:/tmp/myapp
-      
+    command:
+      "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/opt/app/
