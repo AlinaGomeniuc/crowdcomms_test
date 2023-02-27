@@ -72,7 +72,7 @@ class UserVisitLoggingTests(APITestCase):
         The /helloworld/ endpoint shows the correct number of recent visitors and the correct number of
         all visitors and visits, including the current visit to /helloworld/
         '''
-        current_user = User.objects.create_user(username='bob', password='bob')
+        User.objects.create_user(username='bob', password='bob')
         now = datetime.datetime(2020, 6, 6, 9, tzinfo=pytz.UTC)
         with mock.patch('django.utils.timezone.now') as mock_now:
             for i in range(1, 6):
