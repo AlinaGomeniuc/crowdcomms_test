@@ -25,6 +25,8 @@ class BunnySerializer(serializers.ModelSerializer):
         return []
 
     def validate(self, attrs):
+        if attrs['home'].bunnies_limit == attrs['home'].bunnies.count():
+            raise serializers.ValidationError(f'The rabbit hole: {attrs["home"].location} is full')
         return attrs
 
     class Meta:
