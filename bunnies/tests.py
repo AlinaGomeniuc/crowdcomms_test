@@ -56,7 +56,7 @@ class RabbitHolesTests(APITestCase):
             Bunny.objects.create(name=name, home=hole)
 
         other_rabbit_hole = RabbitHole.objects.create(owner=user1, location='location2')
-        other_bunny = Bunny.objects.create(name='Snowball', home=other_rabbit_hole)
+        Bunny.objects.create(name='Snowball', home=other_rabbit_hole)
 
         self.client.login(username=user1.username, password='rabbits')
 
