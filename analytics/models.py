@@ -12,3 +12,9 @@ class UserVisit(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     last_seen = models.DateTimeField(auto_now=True)
     visits = models.PositiveIntegerField(default=0)
+
+    @classmethod
+    def save_visit(cls, user):
+        user_visit = cls.objects.get_or_create(user=user)
+        user_visit[0].visits += 1
+        user_visit[0].save()
